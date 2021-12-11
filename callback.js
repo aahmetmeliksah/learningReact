@@ -45,14 +45,18 @@ async function getData() {
 getData();
 */
 
-const getComments = () => {
+const getComments = (n) => {
   return new Promise((resolve, reject) => {
-    console.log("Comments");
 
-    resolve(); 
+    if (n === 1) {
+      resolve({ text: "Comment" }); 
+    }
+
+    reject({ text: "Rejected" });
+
   })
 }
 
-getComments()
-.then(() => console.log("done"))
+getComments(0)
+.then((data) => console.log(data))
 .catch((e) => console.log(e))
