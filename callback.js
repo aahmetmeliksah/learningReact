@@ -10,6 +10,7 @@
 // sayHi(() => console.log("Hi!"));
 
 import fetch from "node-fetch";
+import axios from "axios"; 
 
 // fetch("https://jsonplaceholder.typicode.com/users").then((data) =>
 //   data.json()).then((users) => {
@@ -20,25 +21,38 @@ import fetch from "node-fetch";
 //       .then((posts) => console.log("fetched post" ,posts))
 //     })
 
+/*
 async function getData() {
 
-  // fetch users
-  const dataUsers = await (
-    await fetch("https://jsonplaceholder.typicode.com/users")
-    ).json();
-    console.log(dataUsers);
+  // get users 
+  const { data: users } = await axios("https://jsonplaceholder.typicode.com/users"
+    );
+    
+    // get post 1
+    const { data: post1 } = await axios("https://jsonplaceholder.typicode.com/posts/1"
+  );
+  
+  // get post 2
+  const { data: post2 } = await axios("https://jsonplaceholder.typicode.com/posts/2"
+  );
 
-    // fetch post 1
-  const post1 = await (
-    await fetch("https://jsonplaceholder.typicode.com/posts/1")
-  ).json();
+  // console.log users and post1 and post2 
+  console.log(users);
   console.log("post1 is uploaded", post1);
-
-  // fetch post 2
-  const post2 = await (
-    await fetch("https://jsonplaceholder.typicode.com/posts/2")
-  ).json();
   console.log("post2 is uploaded", post2);
 }
 
 getData();
+*/
+
+const getComments = () => {
+  return new Promise((resolve, reject) => {
+    console.log("Comments");
+
+    resolve(); 
+  })
+}
+
+getComments()
+.then(() => console.log("done"))
+.catch((e) => console.log(e))
