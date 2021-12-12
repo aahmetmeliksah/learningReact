@@ -45,18 +45,35 @@ async function getData() {
 getData();
 */
 
-const getComments = (n) => {
-  return new Promise((resolve, reject) => {
+const getUsers = () => {
+  return new Promise(async (resolve, reject) => {
+    const { data } = await axios("https://jsonplaceholder.typicode.com/users");
 
-    if (n === 1) {
-      resolve({ text: "Comment" }); 
-    }
+     resolve(data);
+    // reject("ERROR")
+  });
+};
 
-    reject({ text: "Rejected" });
+const getPosts = (post_id) => {
+  return new Promise(async (resolve, reject) => {
+    const { data } = await axios("https://jsonplaceholder.typicode.com/posts/" + post_id);
 
-  })
-}
+    // resolve(data);
+    reject("ANOTHER ERROR")
+  });
+};
 
-getComments(0)
-.then((data) => console.log(data))
-.catch((e) => console.log(e))
+
+(async () => {
+
+  try {
+    const users = await getUsers();
+    const posts = await getPosts(2);
+    
+    console.log(users);
+    console.log(posts);
+  }
+  catch (e) {
+    console.log(e);
+  }
+ })(); 
